@@ -2,124 +2,42 @@ package com.Aereoporto.demo.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.time.LocalDate;
 import java.util.List;
 
 @Document(collection = "voliOperativi")
 public class VoloOperativo {
 
     @Id
-    private String id; // univoco per ogni volo operativo
+    private String id;
 
-    private String numeroVolo; // riferimento a VoloProgrammato
+    private String voloProgrammatoId;   // "AZ123"
+    private String data;                // "2025-12-05"
+    private String stato;               // "schedulato"
 
-    private LocalDate data; // data specifica del volo
-    private String stato;   // schedulato, boarding, partito, in volo, atterrato, cancellato
+    private String gateId;              // "A1"
+    private String aeromobileId;        // "I-DEIF"
 
-    private String gateAssegnato; // codice gate
-    private String aeromobile;    // numero registrazione aeromobile
+    private List<String> personale;     // lista di ID del personale
 
-    private List<PersonaleRuolo> personaleABordo; // lista di personale con ruolo
+    // GETTER & SETTER
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
-    public VoloOperativo() {}
+    public String getVoloProgrammatoId() { return voloProgrammatoId; }
+    public void setVoloProgrammatoId(String voloProgrammatoId) { this.voloProgrammatoId = voloProgrammatoId; }
 
-    public VoloOperativo(String id, String numeroVolo, LocalDate data, String stato,
-                         String gateAssegnato, String aeromobile,
-                         List<PersonaleRuolo> personaleABordo) {
-        this.id = id;
-        this.numeroVolo = numeroVolo;
-        this.data = data;
-        this.stato = stato;
-        this.gateAssegnato = gateAssegnato;
-        this.aeromobile = aeromobile;
-        this.personaleABordo = personaleABordo;
-    }
+    public String getData() { return data; }
+    public void setData(String data) { this.data = data; }
 
-    // Getter e Setter
+    public String getStato() { return stato; }
+    public void setStato(String stato) { this.stato = stato; }
 
-    public String getId() {
-        return id;
-    }
+    public String getGateId() { return gateId; }
+    public void setGateId(String gateId) { this.gateId = gateId; }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    public String getAeromobileId() { return aeromobileId; }
+    public void setAeromobileId(String aeromobileId) { this.aeromobileId = aeromobileId; }
 
-    public String getNumeroVolo() {
-        return numeroVolo;
-    }
-
-    public void setNumeroVolo(String numeroVolo) {
-        this.numeroVolo = numeroVolo;
-    }
-
-    public LocalDate getData() {
-        return data;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
-
-    public String getStato() {
-        return stato;
-    }
-
-    public void setStato(String stato) {
-        this.stato = stato;
-    }
-
-    public String getGateAssegnato() {
-        return gateAssegnato;
-    }
-
-    public void setGateAssegnato(String gateAssegnato) {
-        this.gateAssegnato = gateAssegnato;
-    }
-
-    public String getAeromobile() {
-        return aeromobile;
-    }
-
-    public void setAeromobile(String aeromobile) {
-        this.aeromobile = aeromobile;
-    }
-
-    public List<PersonaleRuolo> getPersonaleABordo() {
-        return personaleABordo;
-    }
-
-    public void setPersonaleABordo(List<PersonaleRuolo> personaleABordo) {
-        this.personaleABordo = personaleABordo;
-    }
-
-    // Classe interna per il personale con ruolo
-    public static class PersonaleRuolo {
-        private String matricola;
-        private String ruolo;
-
-        public PersonaleRuolo() {}
-
-        public PersonaleRuolo(String matricola, String ruolo) {
-            this.matricola = matricola;
-            this.ruolo = ruolo;
-        }
-
-        public String getMatricola() {
-            return matricola;
-        }
-
-        public void setMatricola(String matricola) {
-            this.matricola = matricola;
-        }
-
-        public String getRuolo() {
-            return ruolo;
-        }
-
-        public void setRuolo(String ruolo) {
-            this.ruolo = ruolo;
-        }
-    }
+    public List<String> getPersonale() { return personale; }
+    public void setPersonale(List<String> personale) { this.personale = personale; }
 }
